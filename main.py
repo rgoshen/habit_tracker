@@ -42,9 +42,21 @@ graph_config = {
 pixel_creation_endpoint = f"{PIXELA_ENDPOINT}{USERNAME}/graphs/{GRAPH_ID}"
 
 pixel_data = {
-    "date": today.strfttime("%Y%m%d"),
-    "quantity": input("How many kilometers did you cycle today? ")
+    "date": today.strftime("%Y%m%d"),
+    "quantity": input("How many minutes did you code? ")
 }
 
-response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
-print(response)
+# response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
+# print(response)
+
+# update a pixel on habit graph
+date_input = input("Enter in the date you would like to edit. (YYYYMMDD)")
+
+pixel_update_endpoint = f"{PIXELA_ENDPOINT}{USERNAME}/graphs/{GRAPH_ID}/{date_input}"
+
+update_data = {
+    "quantity": pixel_data["quantity"]
+}
+
+response = requests.put(url=pixel_update_endpoint, json=update_data, headers=headers)
+print(response.text)
