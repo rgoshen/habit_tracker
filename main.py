@@ -41,10 +41,10 @@ graph_config = {
 # create a new pixel on habit graph
 pixel_creation_endpoint = f"{PIXELA_ENDPOINT}{USERNAME}/graphs/{GRAPH_ID}"
 
-pixel_data = {
-    "date": today.strftime("%Y%m%d"),
-    "quantity": input("How many minutes did you code? ")
-}
+# pixel_data = {
+#     "date": today.strftime("%Y%m%d"),
+#     "quantity": input("How many minutes did you code? ")
+# }
 
 # response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
 # print(response)
@@ -54,9 +54,15 @@ date_input = input("Enter in the date you would like to edit. (YYYYMMDD)")
 
 pixel_update_endpoint = f"{PIXELA_ENDPOINT}{USERNAME}/graphs/{GRAPH_ID}/{date_input}"
 
-update_data = {
-    "quantity": pixel_data["quantity"]
-}
+# update_data = {
+#     "quantity": pixel_data["quantity"]
+# }
 
-response = requests.put(url=pixel_update_endpoint, json=update_data, headers=headers)
+# response = requests.put(url=pixel_update_endpoint, json=update_data, headers=headers)
+# print(response.text)
+
+# delete a pixel on habit graph
+pixel_delete_endpoint = f"{PIXELA_ENDPOINT}{USERNAME}/graphs/{GRAPH_ID}/{date_input}"
+
+response = requests.delete(url=pixel_delete_endpoint, headers=headers)
 print(response.text)
